@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { concat, EMPTY, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Chain } from '../model/Chain';
 import { JavEngWord } from '../model/Response';
 import { ApiClientService } from '../service/api-client.service';
+import { InputComponent } from './input/input.component';
 
 export interface WordHistory {
   position: number,
@@ -22,6 +23,8 @@ export class GameComponent implements OnInit {
   chain: Chain = { previous: {}, now: {} };
   history: WordHistory[] = [];
 
+  @ViewChild('appInput') appInput: InputComponent;
+
   constructor(
     private api: ApiClientService
   ) { }
@@ -38,6 +41,7 @@ export class GameComponent implements OnInit {
     const subscription = this.api.getWord(input).pipe(
       switchMap(res => {
         if (!res || res.length === 0) {
+          this.appInput.addNotExistWord(input);
           return EMPTY;
         }
         this.addNext("YOU", res[0]);
@@ -66,5 +70,7 @@ export class GameComponent implements OnInit {
     this.chain.now = word;
 
     this.history = this.history.concat(hist);
+    this.appInput.addUsedWord(word.Lemma);
+    this.appInput.setNextPrefix(word.Lemma);
   }
 }

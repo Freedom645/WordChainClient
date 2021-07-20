@@ -2,7 +2,7 @@
   <mat-form-field class="full-width" appearance="fill">
     <mat-label>Next Word</mat-label>
     <input matInput placeholder="Ex. pizza" formControlName="word">
-    <mat-error *ngIf="wordControl.invalid">{{getErrorMessage("word")}}</mat-error>
+    <mat-error class="error" *ngIf="wordControl.invalid">{{getErrorMessage("word")}}</mat-error>
   </mat-form-field>
 
   <button mat-button type="submit" class="button">Submit</button>

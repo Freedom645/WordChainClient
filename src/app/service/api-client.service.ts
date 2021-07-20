@@ -44,7 +44,7 @@ export class ApiClientService {
     if (!limit) {
       limit = 10;
     }
-    const url = this.API_URL + "/chain-game/word";
+    const url = this.API_URL + "/chain-game/random";
     return this.http.get<JavEngWord[]>(url, {
       responseType: "json",
       headers: new HttpHeaders({

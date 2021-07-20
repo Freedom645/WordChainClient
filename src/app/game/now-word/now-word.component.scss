@@ -8,6 +8,9 @@
     // margin: 0px 20px;
 
     flex-grow: 1;
+    .word::first-letter{
+      color: red;
+    }
 
   }
 
