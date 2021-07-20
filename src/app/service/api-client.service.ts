@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-import { JavEngWord } from '../model/JavEngWord';
+import { JavEngWord, WordCountResponse } from '../model/Response';
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +28,8 @@ export class ApiClientService {
     };
   }
 
-  getWordInfo(word: string): Observable<JavEngWord[]> {
-    const url = this.API_URL + "/word/" + word;
-    console.log(url);
+  getWord(word: string): Observable<JavEngWord[]> {
+    const url = this.API_URL + "/chain-game/word/" + word;
     return this.http.get<JavEngWord[]>(url, {
       responseType: "json",
       headers: new HttpHeaders({
@@ -38,6 +37,35 @@ export class ApiClientService {
       })
     }).pipe(
       catchError(this.handleError<JavEngWord[]>('getWordInfo', []))
+    );
+  }
+
+  randomWord(prefix: string, limit?: number): Observable<JavEngWord[]> {
+    if (!limit) {
+      limit = 10;
+    }
+    const url = this.API_URL + "/chain-game/word";
+    return this.http.get<JavEngWord[]>(url, {
+      responseType: "json",
+      headers: new HttpHeaders({
+        "Access-Control-Allow-Origin": this.API_URL
+      }),
+      params: { prefix: prefix, limit: limit.toString() }
+    }).pipe(
+      catchError(this.handleError<JavEngWord[]>('randomWord', []))
+    );
+  }
+
+  countWord(prefix: string): Observable<WordCountResponse> {
+    const url = this.API_URL + "/chain-game/count";
+    return this.http.get<WordCountResponse>(url, {
+      responseType: "json",
+      headers: new HttpHeaders({
+        "Access-Control-Allow-Origin": this.API_URL
+      }),
+      params: { prefix: prefix }
+    }).pipe(
+      catchError(this.handleError<WordCountResponse>('countWord', null))
     );
   }
 

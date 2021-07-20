@@ -5,3 +5,8 @@ export interface JavEngWord {
   Japanese?: string,
   Commentary?: string,
 }
+
+export interface WordCountResponse {
+  Prefix: string,
+  Count: number;
+}

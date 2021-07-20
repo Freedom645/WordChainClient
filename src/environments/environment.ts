@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  siteName: "WordChain",
   api: {
     wordChainHost: "http://localhost:8080"
   }

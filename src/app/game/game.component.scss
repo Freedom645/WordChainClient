@@ -1,13 +1,10 @@
-.form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-  // background-color: grey;
-  .full-width {
-    width: 100%;
+.game-frame {
+  padding-left: 5px;
+  padding-right: 10px;
+
+  .app-now-word{
   }
-  .button-row {
-    margin-left: auto;
+  .app-history {
+    padding-top: 16px;
   }
 }
-

@@ -1,0 +1,27 @@
+.parent {
+  display: flex;
+
+  .word-card {
+    width: 40%;
+    height: 250px;
+
+    // margin: 0px 20px;
+
+    flex-grow: 1;
+
+  }
+
+  .allow-outer {
+    width: 2rem;
+    height: 280px;
+
+    text-align: center;
+    display: table;
+    mat-icon{
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+  }
+}
+

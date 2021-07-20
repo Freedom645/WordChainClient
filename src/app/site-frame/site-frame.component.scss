@@ -1,0 +1,25 @@
+.top {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.sidenav-container {
+  background-color: rgb(240, 240, 240);
+  flex: 1;
+  .sidenav{
+    width: var(--app-drawer-width, 256px);
+  }
+  .sidenav-content {
+    max-width: 800px - 24px*2;
+    margin: 24px auto;
+    padding: 24px;
+
+    background-color: rgb(255, 255, 255);
+  }
+
+}
+
