@@ -1,0 +1,23 @@
+<div class="top-frame">
+  <div class="welcome-message">
+    Welcome to ...
+  </div>
+  <div class="logo-frame">
+    <img src="./../../assets/logo/logo.png" title="site logo" alt="site's logo image">
+  </div>
+</div>
+
+<div class="top-menu" fxLayout="column">
+  <ng-container *ngFor="let menu of topMenu">
+
+    <div class="content" fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="16px grid"
+         (click)="navigate(menu.path)">
+      <mat-icon class="icon">{{menu.icon}}</mat-icon>
+      <div class="text">
+        <h4><b>{{ menu.title }}</b></h4>
+        <p class="mat-small">{{ menu.description }}</p>
+      </div>
+    </div>
+
+  </ng-container>
+</div>

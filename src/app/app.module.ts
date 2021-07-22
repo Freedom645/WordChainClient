@@ -9,6 +9,8 @@ import { GameComponent } from './game/game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -25,6 +27,8 @@ import { SiteHeaderComponent } from './site-frame/site-header/site-header.compon
 import { HistoryComponent } from './game/history/history.component';
 import { InputComponent } from './game/input/input.component';
 import { NowWordComponent } from './game/now-word/now-word.component';
+import { TopComponent } from './top/top.component';
+import { SiteFooterComponent } from './site-frame/site-footer/site-footer.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +38,16 @@ import { NowWordComponent } from './game/now-word/now-word.component';
     SiteHeaderComponent,
     HistoryComponent,
     InputComponent,
-    NowWordComponent
+    NowWordComponent,
+    TopComponent,
+    SiteFooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
+    FlexLayoutModule,
 
     MatInputModule,
     MatButtonModule,

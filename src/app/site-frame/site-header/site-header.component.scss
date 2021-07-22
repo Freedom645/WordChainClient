@@ -1,0 +1,11 @@
+.toolbar{
+  $height: 50px;
+  min-height: $height;
+
+  .logo-frame{
+    img {
+      height: $height;
+    }
+  }
+}
+
