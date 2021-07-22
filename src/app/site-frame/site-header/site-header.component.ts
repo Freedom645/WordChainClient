@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,9 +13,15 @@ export class SiteHeaderComponent implements OnInit {
 
   @Output() clickSideMenu = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  navigate(path: string) {
+    this.router.navigateByUrl(path);
   }
 
 }

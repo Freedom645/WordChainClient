@@ -1,7 +1,9 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="toolbar" color="primary">
   <button mat-icon-button (click)="clickSideMenu.emit()">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <span>{{title}}</span>
+  <div class="logo-frame">
+    <img src="./../../../assets/logo/logo.png" alt="site's log image" (click)="navigate('/')">
+  </div>
 </mat-toolbar>
