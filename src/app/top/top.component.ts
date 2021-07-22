@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+
+interface TopMenu {
+  icon: string,
+  title: string,
+  description: string,
+  path: string,
+}
 
 @Component({
   selector: 'app-top',
@@ -7,9 +15,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopComponent implements OnInit {
 
-  constructor() { }
+
+
+  readonly topMenu: TopMenu[] = [
+    { icon: "play_arrow", title: "Game Start", description: "this is description. this is description.this is description.this is description.this is description.", path: "/game" },
+    { icon: "play_arrow", title: "Game Start", description: "this is description. this is description.this is description.this is description.this is description.", path: "/game" },
+    { icon: "play_arrow", title: "Game Start", description: "this is description. this is description.this is description.this is description.this is description.", path: "/game" },
+  ];
+
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  navigate(path: string) {
+    this.router.navigateByUrl(path);
   }
 
 }

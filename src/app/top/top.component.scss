@@ -13,3 +13,19 @@
   }
 }
 
+.top-menu{
+  .content{
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    .text { padding: 16px; }
+    .icon{
+      $size: 32px;
+      font-size: $size;
+      line-height: $size;
+    }
+  }
+}

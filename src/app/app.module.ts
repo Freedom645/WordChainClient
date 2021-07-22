@@ -9,6 +9,8 @@ import { GameComponent } from './game/game.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -42,6 +44,8 @@ import { TopComponent } from './top/top.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
+    FlexLayoutModule,
 
     MatInputModule,
     MatButtonModule,
