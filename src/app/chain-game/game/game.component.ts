@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { concat, EMPTY, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { Chain } from '../model/Chain';
-import { JavEngWord } from '../model/Response';
-import { ApiClientService } from '../service/api-client.service';
+import { Chain } from '../../model/Chain';
+import { JavEngWord } from '../../model/Response';
+import { ApiClientService } from '../../service/api-client.service';
 import { InputComponent } from './input/input.component';
 
 export interface WordHistory {
