@@ -25,6 +25,7 @@ import { SiteHeaderComponent } from './site-frame/site-header/site-header.compon
 import { HistoryComponent } from './game/history/history.component';
 import { InputComponent } from './game/input/input.component';
 import { NowWordComponent } from './game/now-word/now-word.component';
+import { TopComponent } from './top/top.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NowWordComponent } from './game/now-word/now-word.component';
     SiteHeaderComponent,
     HistoryComponent,
     InputComponent,
-    NowWordComponent
+    NowWordComponent,
+    TopComponent
   ],
   imports: [
     BrowserModule,
