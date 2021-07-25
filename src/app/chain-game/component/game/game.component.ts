@@ -40,7 +40,7 @@ export class GameComponent implements OnInit {
     this.appInput.setDisableSubmitButton(false);
     switch (response.state) {
       case "NotExist":
-        this.appInput.addNotExistWord(response.word.Lemma);
+        this.appInput.setWord(response.word.Lemma);
         break;
       case "Used":
         break;

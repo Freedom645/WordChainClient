@@ -1,9 +1,9 @@
 .form {
   padding: 16px 16px;
+  padding-bottom: 0px;
   display: flex;
 
-
-  .full-width {
+  .input {
     width: 80%;
   }
   .button {
@@ -14,5 +14,10 @@
   .error{
     font-size: 0.8rem;
   }
+
+}
+.timer {
+  width: 30%;
+  padding: 16px;
 }
 

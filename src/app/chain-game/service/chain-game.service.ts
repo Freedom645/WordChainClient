@@ -13,6 +13,7 @@ export class ChainGameService {
   private difficultySetting: DifficultySetting = DifficultySettingsTemplate.easy;
 
   private readonly history: WordHistory[] = [];
+  private readonly notExistWords = new Set<string>();
 
   private readonly SubmitSubject = new Subject<WordHistory>();
   public readonly SubmitState = this.SubmitSubject.asObservable();
@@ -20,6 +21,11 @@ export class ChainGameService {
   constructor(
     private api: ApiClientService,
   ) { }
+
+  public initialize() {
+    this.history.splice(0);
+    this.notExistWords.clear();
+  }
 
   public submitWord(word: string): Subscription {
     if (this.isUsed(word)) {
@@ -34,6 +40,7 @@ export class ChainGameService {
         if (!res || res.length === 0) {
           // 存在しない場合
           const hist = this.addHistory("YOU", { Lemma: word }, "NotExist");
+          this.notExistWords.add(word);
           this.SubmitSubject.next(hist);
           return EMPTY;
         }
@@ -76,6 +83,10 @@ export class ChainGameService {
   public getNextPrefix(): string {
     const latest = this.history[this.history.length - 1].word.Lemma;
     return this.lastLetter(latest);
+  }
+
+  public isNotExist(word: string): boolean {
+    return this.notExistWords.has(word);
   }
 
   private lastLetter(word: string): string {

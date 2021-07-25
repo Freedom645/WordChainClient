@@ -80,15 +80,10 @@ export class InputComponent implements OnInit {
   private readonly notExistWordList = new Set<string>();
   private notExistWord(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
-    if (this.notExistWordList.has(value)) {
+    if (this.service.isNotExist(value)) {
       return { notExistWord: value };
     }
     return null;
-  }
-
-  public addNotExistWord(word: string): void {
-    this.notExistWordList.add(word);
-    this.wordControl.setValue(word);
   }
 
   // 使用済みチェック系
@@ -108,6 +103,10 @@ export class InputComponent implements OnInit {
       return { isNotMatchPrefix: this.nextPrefix };
     }
     return null;
+  }
+
+  public setWord(word: string): void {
+    this.wordControl.setValue(word);
   }
 
   public setNextPrefix(word: string): void {

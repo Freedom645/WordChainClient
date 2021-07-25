@@ -9,11 +9,12 @@ import { WordHistory } from 'src/app/chain-game/model/chain-game-model';
 export class HistoryComponent implements OnInit {
 
   readonly displayedColumns: string[] = ['position', 'name', 'word', 'state'];
+
   @Input() dataSource: WordHistory[] = [];
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+
 
 }

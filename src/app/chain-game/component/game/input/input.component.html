@@ -1,5 +1,5 @@
 <form class="form" [formGroup]="gameForm" (ngSubmit)="submitGameForm()">
-  <mat-form-field class="full-width" appearance="fill">
+  <mat-form-field class="input" appearance="fill">
     <mat-label>Next Word</mat-label>
     <input matInput placeholder="Ex. pizza" formControlName="word">
     <mat-error class="error" *ngIf="wordControl.invalid">{{getErrorMessage("word")}}</mat-error>
@@ -8,3 +8,6 @@
   <button mat-button type="submit" class="button" [disabled]="isDisabledSubmit">Submit</button>
 
 </form>
+<div class="timer">
+  <app-timer></app-timer>
+</div>
