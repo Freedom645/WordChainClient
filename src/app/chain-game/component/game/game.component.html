@@ -5,6 +5,11 @@
     <app-input #appInput (submitWord)="submitWord($event)"></app-input>
   </div>
 
+  <div class="timer">
+    Timer:
+    <app-timer #appTimer></app-timer>
+  </div>
+
   <div class="app-now-word">
     <app-now-word [chain]="chain"></app-now-word>
   </div>

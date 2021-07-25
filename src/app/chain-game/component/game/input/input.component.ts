@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ChainGameService } from 'src/app/chain-game/service/chain-game.service';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit {
 
@@ -13,6 +13,8 @@ export class InputComponent implements OnInit {
   isDisabledSubmit: boolean = false;
 
   @Output() submitWord: EventEmitter<string> = new EventEmitter();
+
+  @ViewChild('input') input: ElementRef<HTMLInputElement>;
 
   constructor(
     private fb: FormBuilder,
@@ -116,6 +118,9 @@ export class InputComponent implements OnInit {
   // ボタン無効化
   public setDisableSubmitButton(disabled: boolean): boolean {
     this.isDisabledSubmit = disabled;
+    if (!disabled) {
+      this.input.nativeElement.select();
+    }
     return disabled;
   }
 }

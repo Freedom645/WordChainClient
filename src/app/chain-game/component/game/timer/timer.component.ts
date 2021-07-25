@@ -14,15 +14,12 @@ export class TimerComponent implements OnInit {
   timeStr: string = "00:00.0";
   timeProgress: number = 0;
 
-  private timeUpFunc: () => void;
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
   public setTime(time: number) {
-    this.stopTimer();
     if (time >= 6000) {
       time = 5999;
     }
@@ -36,22 +33,33 @@ export class TimerComponent implements OnInit {
     this.timeProgress = 100;
   }
 
-  public startTimer() {
+  public startTimer(func: () => void) {
+    if (this.isStarting()) {
+      return;
+    }
     this.timer = setInterval(() => {
       this.timeStr = this.formatTime(this.time);
       this.timeProgress = this.time / this.timeSetting * 100;
       if (this.time <= 0) {
         this.stopTimer();
-        this.timeUpFunc();
+        func();
       }
       this.time -= 1;
     }, 100);
   }
 
+  public resetTimer() {
+    this.time = this.timeSetting;
+  }
+
   public stopTimer() {
-    if (this.timer) {
+    if (this.isStarting()) {
       clearInterval(this.timer);
     }
+  }
+
+  public isStarting(): boolean {
+    return !!this.timer;
   }
 
   private formatTime(time: number): string {
@@ -61,7 +69,4 @@ export class TimerComponent implements OnInit {
     return `${min}:${sec}.${mil}`;
   }
 
-  public addSubscribe(func: () => void) {
-    this.timeUpFunc = func;
-  }
 }

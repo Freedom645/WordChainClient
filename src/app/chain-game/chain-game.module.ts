@@ -51,6 +51,5 @@ import { TimerComponent } from './component/game/timer/timer.component';
   providers: [
     ChainGameService,
   ],
-
 })
 export class ChainGameModule { }

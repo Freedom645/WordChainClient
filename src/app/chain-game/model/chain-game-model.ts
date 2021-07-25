@@ -26,20 +26,20 @@ export interface DifficultySetting {
 export const DifficultySettingsTemplate: { [key: string]: DifficultySetting; } = {
   easy: {
     difficulty: "Easy",
-    randomTry: 3,
+    randomTry: 1,
     answerTime: 30,
     failedNum: 10,
   },
   normal: {
     difficulty: "Normal",
-    randomTry: 6,
-    answerTime: 20,
+    randomTry: 5,
+    answerTime: 15,
     failedNum: 7,
   },
   hard: {
     difficulty: "Hard",
     randomTry: 20,
-    answerTime: 10,
+    answerTime: 7,
     failedNum: 3,
   },
   veryHard: {

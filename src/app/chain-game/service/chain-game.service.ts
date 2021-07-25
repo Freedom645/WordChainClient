@@ -10,7 +10,7 @@ import { DifficultySetting, DifficultySettingsTemplate, QueryState, WordHistory 
 })
 export class ChainGameService {
 
-  private difficultySetting: DifficultySetting = DifficultySettingsTemplate.easy;
+  private difficultySetting: DifficultySetting = DifficultySettingsTemplate.veryHard;
 
   private readonly history: WordHistory[] = [];
   private readonly notExistWords = new Set<string>();
@@ -87,6 +87,10 @@ export class ChainGameService {
 
   public isNotExist(word: string): boolean {
     return this.notExistWords.has(word);
+  }
+
+  public getDifficulty() {
+    return this.difficultySetting;
   }
 
   private lastLetter(word: string): string {
