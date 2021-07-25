@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Chain } from 'src/app/chain-game/model/Chain';
+import { Chain } from 'src/app/chain-game/model/chain-game-model';
 
 @Component({
   selector: 'app-now-word',

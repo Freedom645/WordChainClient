@@ -19,6 +19,7 @@ import { HistoryComponent } from './component/game/history/history.component';
 import { InputComponent } from './component/game/input/input.component';
 import { NowWordComponent } from './component/game/now-word/now-word.component';
 import { StartComponent } from './component/start/start.component';
+import { ChainGameService } from './service/chain-game.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,10 @@ import { StartComponent } from './component/start/start.component';
 
     ReactiveFormsModule,
     HttpClientModule,
-  ]
+  ],
+  providers: [
+    ChainGameService,
+  ],
+
 })
 export class ChainGameModule { }

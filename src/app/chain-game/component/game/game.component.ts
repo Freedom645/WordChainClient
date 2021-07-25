@@ -1,16 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { concat, EMPTY, Subscription } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { Chain } from '../../model/Chain';
-import { JavEngWord } from '../../../model/Response';
-import { ApiClientService } from '../../../service/api-client.service';
+import { Subscription } from 'rxjs';
+import { Chain, WordHistory } from '../../model/chain-game-model';
 import { InputComponent } from '../../component/game/input/input.component';
+import { ChainGameService } from '../../service/chain-game.service';
 
-export interface WordHistory {
-  position: number,
-  name: string,
-  word: string,
-}
 
 @Component({
   selector: 'app-game',
@@ -26,8 +19,10 @@ export class GameComponent implements OnInit {
   @ViewChild('appInput') appInput: InputComponent;
 
   constructor(
-    private api: ApiClientService
-  ) { }
+    private service: ChainGameService,
+  ) {
+    this.service.SubmitState.subscribe(word => this.receiveResponse(word));
+  }
 
   ngOnInit(): void {
   }
@@ -37,40 +32,27 @@ export class GameComponent implements OnInit {
   }
 
   submitWord(input: string) {
-
-    const subscription = this.api.getWord(input).pipe(
-      switchMap(res => {
-        if (!res || res.length === 0) {
-          this.appInput.addNotExistWord(input);
-          return EMPTY;
-        }
-        this.addNext("YOU", res[0]);
-        const suffix = input.charAt(input.length - 1);
-        return this.api.randomWord(suffix, 100);
-      })
-    ).pipe(
-      map(res => res.find(rec => !this.isUsed(rec.Lemma)))
-    ).subscribe(next => this.addNext("CPU", next));
-
-    this.subscriptions.push(subscription);
+    this.appInput.setDisableSubmitButton(true);
+    this.subscriptions.push(this.service.submitWord(input));
   }
 
-  private isUsed(word: string): boolean {
-    return this.history.some(hist => hist.word === word);
+  private receiveResponse(response: WordHistory) {
+    this.appInput.setDisableSubmitButton(false);
+    switch (response.state) {
+      case "NotExist":
+        this.appInput.addNotExistWord(response.word.Lemma);
+        break;
+      case "Used":
+        break;
+      case "OK":
+        this.chain.previous = this.chain.now;
+        this.chain.now = response.word;
+        this.appInput.setNextPrefix(this.service.getNextPrefix());
+        break;
+      case "Failed":
+        break;
+    }
+    this.history = [...this.service.getHistory()];
   }
 
-  private addNext(name: string, word: JavEngWord): void {
-    const hist: WordHistory = {
-      position: this.history.length + 1,
-      name: name,
-      word: word.Lemma,
-    };
-
-    this.chain.previous = this.chain.now;
-    this.chain.now = word;
-
-    this.history = this.history.concat(hist);
-    this.appInput.addUsedWord(word.Lemma);
-    this.appInput.setNextPrefix(word.Lemma);
-  }
 }

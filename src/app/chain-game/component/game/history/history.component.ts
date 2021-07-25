@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WordHistory } from '../../game/game.component';
+import { WordHistory } from 'src/app/chain-game/model/chain-game-model';
 
 @Component({
   selector: 'app-history',
@@ -8,7 +8,7 @@ import { WordHistory } from '../../game/game.component';
 })
 export class HistoryComponent implements OnInit {
 
-  readonly displayedColumns: string[] = ['position', 'name', 'word'];
+  readonly displayedColumns: string[] = ['position', 'name', 'word', 'state'];
   @Input() dataSource: WordHistory[] = [];
 
   constructor() { }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { ChainGameService } from 'src/app/chain-game/service/chain-game.service';
 
 @Component({
   selector: 'app-input',
@@ -9,11 +10,13 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 export class InputComponent implements OnInit {
 
   readonly gameForm: FormGroup;
+  isDisabledSubmit: boolean = false;
 
   @Output() submitWord: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
+    private service: ChainGameService,
   ) {
     this.gameForm = this.createGameForm();
   }
@@ -22,7 +25,12 @@ export class InputComponent implements OnInit {
 
   private createGameForm(): FormGroup {
     return this.fb.group({
-      word: ['', [Validators.required, Validators.maxLength(50), Validators.pattern("^[a-zA-Z]+$"), (c) => this.notExistWord(c), (c) => this.isUsedWord(c), (c) => this.isNotMatchPrefix(c)]]
+      word: ['', [
+        Validators.required, Validators.maxLength(50), Validators.pattern("^[a-zA-Z]+$"),
+        (c) => this.notExistWord(c),
+        (c) => this.isUsedWord(c),
+        (c) => this.isNotMatchPrefix(c)
+      ]]
     });
   }
 
@@ -54,10 +62,10 @@ export class InputComponent implements OnInit {
   }
 
   submitGameForm() {
-    if (this.gameForm.invalid) {
+    if (this.gameForm.invalid || this.isDisabledSubmit) {
       return;
     }
-    if (this.usedWordList.has(this.wordControl.value)) {
+    if (this.service.isUsed(this.wordControl.value)) {
       this.wordControl.setValue(this.wordControl.value);
       return;
     }
@@ -84,17 +92,12 @@ export class InputComponent implements OnInit {
   }
 
   // 使用済みチェック系
-  private readonly usedWordList = new Set<string>();
   private isUsedWord(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
-    if (this.usedWordList.has(value)) {
+    if (this.service.isUsed(value)) {
       return { isUsedWord: value };
     }
     return null;
-  }
-
-  public addUsedWord(word: string): void {
-    this.usedWordList.add(word);
   }
 
   // 先頭始まりチェック
@@ -109,5 +112,11 @@ export class InputComponent implements OnInit {
 
   public setNextPrefix(word: string): void {
     this.nextPrefix = word.substring(word.length - 1);
+  }
+
+  // ボタン無効化
+  public setDisableSubmitButton(disabled: boolean): boolean {
+    this.isDisabledSubmit = disabled;
+    return disabled;
   }
 }
