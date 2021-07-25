@@ -1,4 +1,4 @@
-import { JavEngWord } from "./Response";
+import { JavEngWord } from "../../model/Response";
 
 export interface Chain {
   previous: JavEngWord;

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WordHistory } from '../game.component';
+import { WordHistory } from '../../game/game.component';
 
 @Component({
   selector: 'app-history',
