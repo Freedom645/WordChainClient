@@ -18,9 +18,7 @@ export class TopComponent implements OnInit {
 
 
   readonly topMenu: TopMenu[] = [
-    { icon: "play_arrow", title: "Game Start", description: "this is description. this is description.this is description.this is description.this is description.", path: "/game" },
-    { icon: "play_arrow", title: "Game Start", description: "this is description. this is description.this is description.this is description.this is description.", path: "/game" },
-    { icon: "play_arrow", title: "Game Start", description: "this is description. this is description.this is description.this is description.this is description.", path: "/game" },
+    { icon: "play_arrow", title: "Game Start", description: "this is description. this is description.this is description.this is description.this is description.", path: "/chain-game/start" }
   ];
 
   constructor(

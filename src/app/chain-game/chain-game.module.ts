@@ -22,6 +22,8 @@ import { NowWordComponent } from './component/game/now-word/now-word.component';
 import { StartComponent } from './component/start/start.component';
 import { ChainGameService } from './service/chain-game.service';
 import { TimerComponent } from './component/game/timer/timer.component';
+import { ChainGameContainerComponent } from './container/chain-game-container/chain-game-container.component';
+import { ChainGameRoutingModule } from './chain-game-routing.module';
 
 @NgModule({
   declarations: [
@@ -31,11 +33,13 @@ import { TimerComponent } from './component/game/timer/timer.component';
     NowWordComponent,
     StartComponent,
     TimerComponent,
+    ChainGameContainerComponent,
   ],
   imports: [
     CommonModule,
-
     FlexLayoutModule,
+
+    ChainGameRoutingModule,
 
     MatInputModule,
     MatButtonModule,

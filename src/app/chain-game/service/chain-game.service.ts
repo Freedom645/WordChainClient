@@ -10,7 +10,7 @@ import { DifficultySetting, DifficultySettingsTemplate, QueryState, WordHistory 
 })
 export class ChainGameService {
 
-  private difficultySetting: DifficultySetting = DifficultySettingsTemplate.veryHard;
+  private difficultySetting: DifficultySetting = DifficultySettingsTemplate.easy;
 
   private readonly history: WordHistory[] = [];
   private readonly notExistWords = new Set<string>();

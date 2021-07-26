@@ -4,7 +4,7 @@ import { GameComponent } from './chain-game/component/game/game.component';
 import { TopComponent } from './component/top/top.component';
 
 const routes: Routes = [
-  { path: 'game', component: GameComponent },
+  { path: 'chain-game', loadChildren: "./chain-game/chain-game-routing.module#ChainGameRoutingModule" },
   { path: 'top', component: TopComponent },
   { path: '**', redirectTo: 'top', pathMatch: 'full' }
 ];
