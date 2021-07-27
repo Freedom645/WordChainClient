@@ -19,6 +19,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { GameComponent } from './component/game/game.component';
 import { HistoryComponent } from './component/game/history/history.component';
@@ -29,6 +30,7 @@ import { ChainGameService } from './service/chain-game.service';
 import { TimerComponent } from './component/game/timer/timer.component';
 import { ChainGameContainerComponent } from './container/chain-game-container/chain-game-container.component';
 import { ChainGameRoutingModule } from './chain-game-routing.module';
+import { GameOverDialogComponent } from './component/game/game-over-dialog/game-over-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { ChainGameRoutingModule } from './chain-game-routing.module';
     StartComponent,
     TimerComponent,
     ChainGameContainerComponent,
+    GameOverDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +61,7 @@ import { ChainGameRoutingModule } from './chain-game-routing.module';
     MatSelectModule,
     MatSliderModule,
     MatBadgeModule,
+    MatDialogModule,
 
     ReactiveFormsModule,
     HttpClientModule,

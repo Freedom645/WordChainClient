@@ -10,15 +10,12 @@ import { DifficultySetting, DifficultySettingsTemplate, QueryState, WordHistory 
 })
 export class ChainGameService {
 
-  private difficultySetting: DifficultySetting = DifficultySettingsTemplate[0];
+  private difficultySetting: DifficultySetting = DifficultySettingsTemplate[DifficultySettingsTemplate.length - 1];
 
   private failedNum: number;
 
   private readonly history: WordHistory[] = [];
   private readonly notExistWords = new Set<string>();
-
-  private readonly SubmitSubject = new Subject<WordHistory>();
-  public readonly SubmitState = this.SubmitSubject.asObservable();
 
   constructor(
     private api: ApiClientService,
@@ -30,11 +27,11 @@ export class ChainGameService {
     this.failedNum = 0;
   }
 
-  public submitWord(word: string): Subscription {
+  public submitWord(word: string, callBack: (value: WordHistory) => void): Subscription {
     if (this.isUsed(word)) {
       // 使用済みの場合
       const hist = this.addHistory("YOU", { Lemma: word }, "Used");
-      this.SubmitSubject.next(hist);
+      callBack(hist);
       return Subscription.EMPTY;
     }
 
@@ -44,11 +41,11 @@ export class ChainGameService {
           // 存在しない場合
           const hist = this.addHistory("YOU", { Lemma: word }, "NotExist");
           this.notExistWords.add(word);
-          this.SubmitSubject.next(hist);
+          callBack(hist);
           return EMPTY;
         }
         const hist = this.addHistory("YOU", res[0], "OK");
-        this.SubmitSubject.next(hist);
+        callBack(hist);
 
         const suffix = this.lastLetter(word);
         return this.api.randomWord(suffix, this.difficultySetting.randomTry);
@@ -58,7 +55,7 @@ export class ChainGameService {
     ).subscribe(
       next => {
         const hist = this.addHistory("CPU", next, next ? "OK" : "Failed");
-        this.SubmitSubject.next(hist);
+        callBack(hist);
       }
     );
   }
@@ -105,8 +102,12 @@ export class ChainGameService {
     return this.failedNum;
   }
 
+  public getFiledNum(): number {
+    return this.failedNum;
+  }
+
   public isFailed(): boolean {
-    return this.failedNum >= this.getDifficulty().failedNum;
+    return this.failedNum > this.getDifficulty().failedNum;
   }
 
   private lastLetter(word: string): string {

@@ -51,3 +51,7 @@ export const DifficultySettingsTemplate: DifficultySetting[] = [
 ];
 
 export type GameOverType = "FailedByCPU" | "FailedOver" | "TimeLimit";
+
+export interface GameOverDialogData {
+  type: GameOverType,
+}

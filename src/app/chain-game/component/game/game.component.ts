@@ -1,8 +1,10 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { JavEngWord } from 'src/app/model/Response';
-import { Chain, GameOverType, WordHistory } from '../../model/chain-game-model';
+import { Chain, GameOverDialogData, GameOverType, WordHistory } from '../../model/chain-game-model';
 import { ChainGameService } from '../../service/chain-game.service';
+import { GameOverDialogComponent } from './game-over-dialog/game-over-dialog.component';
 import { InputComponent } from './input/input.component';
 import { TimerComponent } from './timer/timer.component';
 
@@ -26,8 +28,8 @@ export class GameComponent implements OnInit, AfterViewInit {
   constructor(
     private service: ChainGameService,
     private cd: ChangeDetectorRef,
+    private gameOverDialog: MatDialog,
   ) {
-    this.service.SubmitState.subscribe(word => this.receiveResponse(word));
   }
 
   ngOnInit(): void {
@@ -45,7 +47,7 @@ export class GameComponent implements OnInit, AfterViewInit {
 
   submitWord(input: string) {
     this.appInput.setDisableSubmitButton(true);
-    this.subscriptions.push(this.service.submitWord(input));
+    this.subscriptions.push(this.service.submitWord(input, word => this.receiveResponse(word)));
   }
 
   private receiveResponse(response: WordHistory) {
@@ -91,14 +93,14 @@ export class GameComponent implements OnInit, AfterViewInit {
     if (this.appTimer.isStarting()) {
       this.appTimer.stopTimer();
     }
-    switch (type) {
-      case "FailedByCPU":
-        break;
-      case "FailedOver":
-        break;
-      case "TimeLimit":
-        break;
-    }
+
+
+    this.gameOverDialog.open(GameOverDialogComponent, {
+      width: '250px',
+      data: { type: type } as GameOverDialogData
+    }).afterClosed().subscribe(result => {
+
+    });
   }
 
 }
