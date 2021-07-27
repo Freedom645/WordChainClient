@@ -12,6 +12,8 @@ export class ChainGameService {
 
   private difficultySetting: DifficultySetting = DifficultySettingsTemplate[0];
 
+  private failedNum: number;
+
   private readonly history: WordHistory[] = [];
   private readonly notExistWords = new Set<string>();
 
@@ -25,6 +27,7 @@ export class ChainGameService {
   public initialize() {
     this.history.splice(0);
     this.notExistWords.clear();
+    this.failedNum = 0;
   }
 
   public submitWord(word: string): Subscription {
@@ -95,6 +98,15 @@ export class ChainGameService {
 
   public setDifficulty(diff: DifficultySetting): void {
     this.difficultySetting = diff;
+  }
+
+  public addFailedNum(): number {
+    this.failedNum++;
+    return this.failedNum;
+  }
+
+  public isFailed(): boolean {
+    return this.failedNum >= this.getDifficulty().failedNum;
   }
 
   private lastLetter(word: string): string {

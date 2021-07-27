@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { GameComponent } from './component/game/game.component';
 import { HistoryComponent } from './component/game/history/history.component';
@@ -56,6 +57,7 @@ import { ChainGameRoutingModule } from './chain-game-routing.module';
     MatSlideToggleModule,
     MatSelectModule,
     MatSliderModule,
+    MatBadgeModule,
 
     ReactiveFormsModule,
     HttpClientModule,

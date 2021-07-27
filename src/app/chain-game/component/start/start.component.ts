@@ -36,6 +36,7 @@ export class StartComponent implements OnInit {
   }
 
   clickStart() {
+    this.service.initialize();
     this.service.setDifficulty(this.getDifficulty());
     this.router.navigate(['game'], { relativeTo: this.route.parent });
   }

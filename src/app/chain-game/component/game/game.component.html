@@ -4,10 +4,14 @@
   <div class="app-input">
     <app-input #appInput (submitWord)="submitWord($event)"></app-input>
   </div>
+  <div class="timer-failed-frame">
+    <div class="timer-frame">
+      <app-timer #appTimer></app-timer>
+    </div>
+    <div class="failed-frame">
 
-  <div class="timer">
-    Timer:
-    <app-timer #appTimer></app-timer>
+      <mat-icon class="failed-icon" [matBadge]="failedNum" matBadgeColor="warn">close</mat-icon>
+    </div>
   </div>
 
   <div class="app-now-word">

@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Chain, WordHistory } from '../../model/chain-game-model';
+import { JavEngWord } from 'src/app/model/Response';
+import { Chain, GameOverType, WordHistory } from '../../model/chain-game-model';
 import { ChainGameService } from '../../service/chain-game.service';
 import { InputComponent } from './input/input.component';
 import { TimerComponent } from './timer/timer.component';
@@ -16,6 +17,9 @@ export class GameComponent implements OnInit, AfterViewInit {
   chain: Chain = { previous: {}, now: {} };
   history: WordHistory[] = [];
 
+  failedNum: number = 0;
+  failedNumMax = this.service.getDifficulty().failedNum;
+
   @ViewChild('appInput') appInput: InputComponent;
   @ViewChild('appTimer') appTimer: TimerComponent;
 
@@ -26,7 +30,9 @@ export class GameComponent implements OnInit, AfterViewInit {
     this.service.SubmitState.subscribe(word => this.receiveResponse(word));
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.service.initialize();
+  }
 
   ngAfterViewInit() {
     this.appTimer.setTime(this.service.getDifficulty().answerTime);
@@ -47,24 +53,52 @@ export class GameComponent implements OnInit, AfterViewInit {
     switch (response.state) {
       case "NotExist":
         this.appInput.setWord(response.word.Lemma);
+        this.failedNum = this.service.addFailedNum();
+        if (this.service.isFailed()) {
+          this.doGameOver("FailedOver");
+        }
         break;
       case "Used":
+        this.failedNum = this.service.addFailedNum();
+        if (this.service.isFailed()) {
+          this.doGameOver("FailedOver");
+        }
         break;
       case "OK":
-        this.chain.previous = this.chain.now;
-        this.chain.now = response.word;
+        this.switchChain(response.word);
         this.appInput.setNextPrefix(this.service.getNextPrefix());
-
         if (this.appTimer.isStarting()) {
           this.appTimer.resetTimer();
         } else {
-          this.appTimer.startTimer(() => { this.appInput.setDisableSubmitButton(true); });
+          this.appTimer.startTimer(() => this.doGameOver("TimeLimit"));
         }
         break;
       case "Failed":
+        this.switchChain({});
+        this.doGameOver("FailedByCPU");
         break;
     }
     this.history = [...this.service.getHistory()];
+  }
+
+  private switchChain(word: JavEngWord) {
+    this.chain.previous = this.chain.now;
+    this.chain.now = word;
+  }
+
+  private doGameOver(type: GameOverType) {
+    this.appInput.setDisableSubmitButton(true);
+    if (this.appTimer.isStarting()) {
+      this.appTimer.stopTimer();
+    }
+    switch (type) {
+      case "FailedByCPU":
+        break;
+      case "FailedOver":
+        break;
+      case "TimeLimit":
+        break;
+    }
   }
 
 }

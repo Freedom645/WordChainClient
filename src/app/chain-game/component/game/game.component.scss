@@ -2,9 +2,21 @@
   padding-left: 5px;
   padding-right: 10px;
 
-  .timer {
-    max-width: 70%;
-    padding: 16px;
+  .timer-failed-frame{
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 10px;
+    .timer-frame {
+      flex-basis: 70%;
+    }
+    .failed-frame {
+      flex-basis: 30%;
+      text-align: center;
+      .failed-icon{
+        font-size: 30px;
+      }
+    }
   }
 
   .app-history {
