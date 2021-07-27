@@ -1,1 +1,34 @@
-<p>start works!</p>
+<h1>WordChain</h1>
+
+<div class="section">
+  <div class="section-title">
+    Difficulty
+  </div>
+  <mat-selection-list #shoes [multiple]="false" class="section-config" value="1" (selectionChange)="select($event)">
+    <mat-list-option *ngFor="let diff of gameDifficulties; index as i" [value]="i" [selected]="i===selectedIndex">
+      {{diff.difficulty}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+
+<div class="section">
+  <div class="section-title">
+    Parameter
+  </div>
+  <div class="section-config">
+    <ng-container *ngFor="let input of inputs">
+      <div class="input">
+        <mat-form-field class="input-value" appearance="fill">
+          <mat-label>{{input}}</mat-label>
+          <input matInput readonly [value]="gameDifficulties[selectedIndex][input]">
+        </mat-form-field>
+        <mat-slider class="input-slider" [value]="gameDifficulties[selectedIndex][input]"
+                    [min]="gameDifficulties[0][input]" [max]="gameDifficulties[gameDifficulties.length-1][input]"
+                    disabled></mat-slider>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div class="start-button-frame">
+  <button mat-button class="start-button" (click)="clickStart()">Start</button>
+</div>

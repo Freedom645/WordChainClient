@@ -14,6 +14,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { GameComponent } from './component/game/game.component';
 import { HistoryComponent } from './component/game/history/history.component';
@@ -48,6 +52,10 @@ import { ChainGameRoutingModule } from './chain-game-routing.module';
     MatCardModule,
     MatExpansionModule,
     MatProgressBarModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatSliderModule,
 
     ReactiveFormsModule,
     HttpClientModule,
