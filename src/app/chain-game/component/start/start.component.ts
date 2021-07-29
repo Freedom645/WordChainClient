@@ -19,12 +19,14 @@ export class StartComponent implements OnInit {
     private service: ChainGameService,
     private router: Router,
     private route: ActivatedRoute,
-  ) {
-    this.service.setDifficulty(this.getDifficulty());
-  }
+  ) { }
 
 
   ngOnInit(): void {
+    const index = this.gameDifficulties.findIndex(diff => diff === this.service.getDifficulty());
+    if (index !== -1) {
+      this.selectedIndex = index;
+    }
   }
 
   private getDifficulty() {

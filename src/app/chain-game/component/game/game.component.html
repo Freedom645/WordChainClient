@@ -9,7 +9,6 @@
       <app-timer #appTimer></app-timer>
     </div>
     <div class="failed-frame">
-
       <mat-icon class="failed-icon" [matBadge]="failedNum" matBadgeColor="warn">close</mat-icon>
     </div>
   </div>
@@ -17,6 +16,7 @@
   <div class="app-now-word">
     <app-now-word [chain]="chain"></app-now-word>
   </div>
+  <button mat-raised-button color="warn" *ngIf="isGameEnd" class="end-button" (click)="moveResult()">Result</button>
 
   <div class="app-history">
     <app-history [dataSource]="history"></app-history>

@@ -42,9 +42,10 @@ export class TimerComponent implements OnInit {
       this.timeProgress = this.time / this.timeSetting * 100;
       if (this.time <= 0) {
         this.stopTimer();
+        this.time = 0;
         func();
       }
-      this.time -= 1;
+      this.time--;
     }, 100);
   }
 

@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { JavEngWord } from 'src/app/model/Response';
 import { Chain, GameOverDialogData, GameOverType, WordHistory } from '../../model/chain-game-model';
@@ -21,6 +22,7 @@ export class GameComponent implements OnInit, AfterViewInit {
 
   failedNum: number = 0;
   failedNumMax = this.service.getDifficulty().failedNum;
+  isGameEnd = false;
 
   @ViewChild('appInput') appInput: InputComponent;
   @ViewChild('appTimer') appTimer: TimerComponent;
@@ -29,6 +31,8 @@ export class GameComponent implements OnInit, AfterViewInit {
     private service: ChainGameService,
     private cd: ChangeDetectorRef,
     private gameOverDialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
   }
 
@@ -42,6 +46,7 @@ export class GameComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy(): void {
+    this.appTimer.stopTimer();
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
@@ -89,11 +94,11 @@ export class GameComponent implements OnInit, AfterViewInit {
   }
 
   private doGameOver(type: GameOverType) {
+    this.isGameEnd = true;
     this.appInput.setDisableSubmitButton(true);
     if (this.appTimer.isStarting()) {
       this.appTimer.stopTimer();
     }
-
 
     this.gameOverDialog.open(GameOverDialogComponent, {
       width: '250px',
@@ -103,4 +108,7 @@ export class GameComponent implements OnInit, AfterViewInit {
     });
   }
 
+  moveResult() {
+    this.router.navigate(['result'], { relativeTo: this.route.parent });
+  }
 }

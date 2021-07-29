@@ -1,3 +1,4 @@
+
 .game-frame {
   padding-left: 5px;
   padding-right: 10px;
@@ -16,7 +17,16 @@
       .failed-icon{
         font-size: 30px;
       }
+      .failed-num{
+        font-size: 1.8rem;
+      }
     }
+  }
+
+  .end-button {
+    width: 100%;
+    margin: 10px;
+    font-size: large;
   }
 
   .app-history {

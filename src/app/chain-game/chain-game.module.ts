@@ -31,6 +31,7 @@ import { TimerComponent } from './component/game/timer/timer.component';
 import { ChainGameContainerComponent } from './container/chain-game-container/chain-game-container.component';
 import { ChainGameRoutingModule } from './chain-game-routing.module';
 import { GameOverDialogComponent } from './component/game/game-over-dialog/game-over-dialog.component';
+import { ResultComponent } from './component/result/result.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { GameOverDialogComponent } from './component/game/game-over-dialog/game-
     TimerComponent,
     ChainGameContainerComponent,
     GameOverDialogComponent,
+    ResultComponent,
   ],
   imports: [
     CommonModule,

@@ -10,7 +10,7 @@ import { DifficultySetting, DifficultySettingsTemplate, QueryState, WordHistory 
 })
 export class ChainGameService {
 
-  private difficultySetting: DifficultySetting = DifficultySettingsTemplate[DifficultySettingsTemplate.length - 1];
+  private difficultySetting: DifficultySetting = DifficultySettingsTemplate[0];
 
   private failedNum: number;
 
