@@ -1,0 +1,7 @@
+<h1 mat-dialog-title [class.title-win]="isWin" [class.title-lose]="!isWin">{{display.title}}</h1>
+<div mat-dialog-content>
+  <p>{{display.description}}</p>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button tabindex="-1" (click)="onClick()">OK</button>
+</div>

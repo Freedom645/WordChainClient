@@ -1,0 +1,24 @@
+<h1>WordChain</h1>
+<div class class="game-frame">
+
+  <div class="app-input">
+    <app-input #appInput (submitWord)="submitWord($event)"></app-input>
+  </div>
+  <div class="timer-failed-frame">
+    <div class="timer-frame">
+      <app-timer #appTimer></app-timer>
+    </div>
+    <div class="failed-frame">
+      <mat-icon class="failed-icon" [matBadge]="failedNum" matBadgeColor="warn">close</mat-icon>
+    </div>
+  </div>
+
+  <div class="app-now-word">
+    <app-now-word [chain]="chain"></app-now-word>
+  </div>
+  <button mat-raised-button color="warn" *ngIf="isGameEnd" class="end-button" (click)="moveResult()">Result</button>
+
+  <div class="app-history">
+    <app-history [dataSource]="history"></app-history>
+  </div>
+</div>

@@ -10,13 +10,20 @@
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.playerName}} </td>
   </ng-container>
 
   <!-- Word Column -->
   <ng-container matColumnDef="word">
     <th mat-header-cell *matHeaderCellDef> Word </th>
-    <td mat-cell *matCellDef="let element"> {{element.word}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.word.Lemma}} </td>
+  </ng-container>
+
+  <!-- State Column -->
+  <ng-container matColumnDef="state">
+    <th mat-header-cell *matHeaderCellDef> State </th>
+    <td mat-cell *matCellDef="let element" [class.state-OK]="element.state=='OK'"
+        [class.state-Other]="element.state!='OK'"> {{element.state}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

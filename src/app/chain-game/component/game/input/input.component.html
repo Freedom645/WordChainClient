@@ -1,0 +1,10 @@
+<form class="form" [formGroup]="gameForm" (ngSubmit)="submitGameForm()">
+  <mat-form-field class="input" appearance="fill">
+    <mat-label>Next Word</mat-label>
+    <input #input matInput placeholder="Ex. pizza" formControlName="word" [attr.disabled]="isDisabledSubmit?'':null">
+    <mat-error class="error" *ngIf="wordControl.invalid">{{getErrorMessage("word")}}</mat-error>
+  </mat-form-field>
+
+  <button mat-button type="submit" class="button" [disabled]="isDisabledSubmit">Submit</button>
+
+</form>
