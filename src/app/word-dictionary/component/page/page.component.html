@@ -1,7 +1,0 @@
-<mat-grid-list class="grid-list" cols="5" rowHeight="1:1">
-  <ng-container *ngFor="let item of prefixList | keyvalue; index as i">
-    <mat-grid-tile>
-      <button mat-raised-button class="button" (click)="clickPrefix(item.key)">{{item.key}}_{{item.value}}</button>
-    </mat-grid-tile>
-  </ng-container>
-</mat-grid-list>

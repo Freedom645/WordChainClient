@@ -5,11 +5,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 
 import { WordComponent } from './component/word/word.component';
 import { WordDictionaryComponent } from './container/word-dictionary/word-dictionary.component';
 import { SearchComponent } from './component/search/search.component';
-import { PageComponent } from './component/page/page.component';
 import { WordDictionaryRoutingModule } from './word-dictionary-routing.module';
 import { PrefixPageComponent } from './component/prefix-page/prefix-page.component';
 
@@ -20,7 +20,6 @@ import { PrefixPageComponent } from './component/prefix-page/prefix-page.compone
     WordComponent,
     WordDictionaryComponent,
     SearchComponent,
-    PageComponent,
     PrefixPageComponent,
   ],
   imports: [
@@ -31,6 +30,7 @@ import { PrefixPageComponent } from './component/prefix-page/prefix-page.compone
     MatButtonModule,
     MatPaginatorModule,
     MatTableModule,
+    MatSelectModule,
 
   ]
 })
