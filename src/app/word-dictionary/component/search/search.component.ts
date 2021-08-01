@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
@@ -11,12 +11,12 @@ import { ApiClientService } from 'src/app/service/api-client.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
 
   readonly inputControl = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z]+$")]);
   filteredOptions: Observable<string[]>;
 
-  isAutocomplete: boolean = true;
+  isAutocomplete: boolean = false;
 
   index: number;
   size: number = 10;
@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
 
   readonly prefixList: string[] = [];
   readonly displayedColumns: string[] = ['Lemma', 'Japanese'];
-  wordList: JavEngWord[] = [];
+  wordList: JavEngWord[];
 
   readonly subscriptions: Subscription[] = [];
 
@@ -47,20 +47,28 @@ export class SearchComponent implements OnInit {
         return;
       }
 
+      this.subscriptions.forEach(sub => sub.unsubscribe());
       this.subscriptions.push(this.api.countWord(this.inputControl.value).subscribe(res => this.searchNum = res.Count));
       this.subscriptions.push(this.api.getWordByPrefix(this.inputControl.value, this.size, this.index * this.size).subscribe(res => {
         this.setWordList(res);
         this.paginatorDisabled = false;
       }));
     });
-    this.setWordList([]);
+    if (!this.wordList) {
+      this.setWordList([]);
+    }
   }
 
   private setWordList(list: JavEngWord[]) {
-    while (list.length < this.size) {
-      list.push({});
+    const newList = new Array<JavEngWord>(this.size);
+
+    if (list) {
+      for (let i = 0; i < list.length; i++) {
+        newList[i] = list[i];
+      }
     }
-    this.wordList = list;
+
+    this.wordList = newList;
   }
 
   ngOnInit(): void {
@@ -79,6 +87,20 @@ export class SearchComponent implements OnInit {
 
     const lower = value.toLowerCase();
     return this.api.getWordByPrefix(lower, 10, 0);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  getErrorMessage(): string {
+    if (this.inputControl.hasError('required')) {
+      return 'please enter.';
+    }
+    if (this.inputControl.hasError('pattern')) {
+      return 'please enter in alphabet.';
+    }
+    return '';
   }
 
   submitSearch() {

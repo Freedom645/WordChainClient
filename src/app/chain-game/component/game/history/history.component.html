@@ -16,7 +16,7 @@
   <!-- Word Column -->
   <ng-container matColumnDef="word">
     <th mat-header-cell *matHeaderCellDef> Word </th>
-    <td mat-cell *matCellDef="let element"> {{element.word.Lemma}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.word?.Lemma}} </td>
   </ng-container>
 
   <!-- State Column -->
