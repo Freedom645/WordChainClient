@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -37,6 +37,19 @@ export class ApiClientService {
       })
     }).pipe(
       catchError(this.handleError<JavEngWord[]>('getWordInfo', []))
+    );
+  }
+
+  getWordByPrefix(prefix: string, limit: number, offset: number): Observable<JavEngWord[]> {
+    const url = this.API_URL + "/chain-game/word";
+    return this.http.get<JavEngWord[]>(url, {
+      responseType: "json",
+      headers: new HttpHeaders({
+        "Access-Control-Allow-Origin": this.API_URL
+      }),
+      params: { prefix: prefix, limit: limit.toString(), offset: offset.toString() }
+    }).pipe(
+      catchError(this.handleError<JavEngWord[]>('getWordByPrefix', []))
     );
   }
 

@@ -5,6 +5,7 @@ import { TopComponent } from './component/top/top.component';
 
 const routes: Routes = [
   { path: 'chain-game', loadChildren: "./chain-game/chain-game-routing.module#ChainGameRoutingModule" },
+  { path: 'dictionary', loadChildren: "./word-dictionary/word-dictionary-routing.module#WordDictionaryRoutingModule" },
   { path: '', component: TopComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

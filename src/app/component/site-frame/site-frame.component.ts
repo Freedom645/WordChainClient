@@ -15,7 +15,8 @@ export class SiteFrameComponent implements OnInit {
   readonly menuList: SideMenu[] = [
     { name: "Top", path: "." },
     null,
-    { name: "WordChain", path: "./game" },
+    { name: "WordChain", path: "./chain-game" },
+    { name: "Search", path: "./dictionary/search" },
   ];
 
   constructor() { }
