@@ -16,7 +16,6 @@ export class SiteFrameComponent implements OnInit {
     { name: "Top", path: "." },
     null,
     { name: "WordChain", path: "./chain-game" },
-    { name: "Dictionary", path: "./dictionary/prefix" },
     { name: "Search", path: "./dictionary/search" },
   ];
 

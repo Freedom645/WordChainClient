@@ -17,6 +17,11 @@
   </div>
 </div>
 
+<mat-paginator [length]="searchNum" [pageSize]="size" [pageIndex]="index" [showFirstLastButtons]="false"
+               (page)="changePage($event.pageIndex, $event.pageSize)" aria-label="Select page"
+               [disabled]="paginatorDisabled">
+</mat-paginator>
+
 <table mat-table [dataSource]="wordList">
 
   <ng-container matColumnDef="Lemma">

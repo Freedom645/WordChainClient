@@ -17,14 +17,12 @@ import { WordComponent } from './component/word/word.component';
 import { WordDictionaryComponent } from './container/word-dictionary/word-dictionary.component';
 import { SearchComponent } from './component/search/search.component';
 import { WordDictionaryRoutingModule } from './word-dictionary-routing.module';
-import { PrefixPageComponent } from './component/prefix-page/prefix-page.component';
 
 @NgModule({
   declarations: [
     WordComponent,
     WordDictionaryComponent,
     SearchComponent,
-    PrefixPageComponent,
   ],
   imports: [
     CommonModule,
