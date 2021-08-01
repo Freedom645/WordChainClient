@@ -4,55 +4,43 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GameComponent } from './game/game.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { ApiClientService } from './service/api-client.service';
-import { SiteFrameComponent } from './site-frame/site-frame.component';
-import { SiteHeaderComponent } from './site-frame/site-header/site-header.component';
-import { HistoryComponent } from './game/history/history.component';
-import { InputComponent } from './game/input/input.component';
-import { NowWordComponent } from './game/now-word/now-word.component';
+import { SiteFrameComponent } from './component/site-frame/site-frame.component';
+import { SiteHeaderComponent } from './component/site-frame/site-header/site-header.component';
+import { SiteFooterComponent } from './component/site-frame/site-footer/site-footer.component';
+
+import { TopComponent } from './component/top/top.component';
+import { ChainGameModule } from './chain-game/chain-game.module';
+import { WordDictionaryModule } from './word-dictionary/word-dictionary.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameComponent,
     SiteFrameComponent,
     SiteHeaderComponent,
-    HistoryComponent,
-    InputComponent,
-    NowWordComponent
+    SiteFooterComponent,
+    TopComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
 
-    MatInputModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
     MatSidenavModule,
+    MatToolbarModule,
     MatListModule,
-    MatTableModule,
-    MatCardModule,
-    MatExpansionModule,
+    MatIconModule,
+    MatButtonModule,
 
-    ReactiveFormsModule,
-    HttpClientModule,
+    ChainGameModule,
+    WordDictionaryModule,
   ],
   providers: [
     ApiClientService

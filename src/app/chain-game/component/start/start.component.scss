@@ -1,0 +1,46 @@
+.section{
+  padding-top: 1rem;
+
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+
+  .section-title{
+    width: 60px;
+    min-width: 60px;
+    margin-right: 56px;
+    margin-left: 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .section-config{
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+
+    .input{
+      display: flex;
+      align-items: center;
+      .input-value{
+        padding: 10px;
+        flex-basis: 40%;
+      }
+      .input-slider{
+        padding: 10px;
+        flex-basis: 60%;
+      }
+    }
+  }
+}
+
+.start-button-frame{
+  display: flex;
+  justify-content:center;
+  .start-button{
+    width: 100%;
+    font-size: 2rem;
+  }
+}
+
+

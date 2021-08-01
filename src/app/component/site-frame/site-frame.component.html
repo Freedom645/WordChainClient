@@ -1,0 +1,28 @@
+<div class="top">
+  <app-site-header (clickSideMenu)="sideMenu.toggle()"></app-site-header>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="sidenav" #sideMenu mode="over">
+      <mat-nav-list>
+        <ng-container *ngFor="let menu of menuList">
+          <div *ngIf="menu; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+            <a mat-list-item [routerLink]="menu.path">{{menu.name}}</a>
+          </ng-template>
+          <ng-template #elseBlock>
+            <mat-divider></mat-divider>
+          </ng-template>
+
+        </ng-container>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="sidenav-content">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="footer">
+        <app-site-footer></app-site-footer>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

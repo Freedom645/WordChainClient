@@ -1,0 +1,21 @@
+.nav{
+  display: flex;
+  width: 100%;
+  padding-bottom: 16px;
+  .search{
+    width: 50%;
+    font-size: 1rem;
+    text-align: center;
+
+  }
+  .next{
+    width: 50%;
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

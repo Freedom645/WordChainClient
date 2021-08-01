@@ -1,0 +1,35 @@
+<div class="nav">
+  <div class="search">
+    <button mat-button (click)="clickReturn()">
+      <mat-icon>keyboard_return</mat-icon>Return
+    </button>
+  </div>
+  <div class="next">
+    <button mat-button (click)="clickNext(wordSuffix)">
+      <mat-icon>navigate_next</mat-icon>Search '{{wordSuffix}}'
+    </button>
+  </div>
+</div>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{word}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{jew?.Japanese}}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    {{jew?.Commentary}}
+  </mat-card-content>
+  <mat-card-actions>
+    <ng-container *ngFor="let site of siteList">
+      <button mat-button (click)="navigateExternalSite(link)">
+        <img src="https://www.google.com/s2/favicons?domain={{site.host}}">
+        {{site.display}}
+        <a #link target="_blank" href="{{site.url}}" hidden></a>
+      </button>
+    </ng-container>
+  </mat-card-actions>
+</mat-card>

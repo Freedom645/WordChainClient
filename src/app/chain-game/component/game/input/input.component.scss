@@ -1,0 +1,20 @@
+.form {
+  padding: 16px 16px;
+  padding-bottom: 0px;
+  display: flex;
+
+  .input {
+    width: 80%;
+    font-size: 16px;
+  }
+  .button {
+    margin: 1rem;
+    width: 20%;
+  }
+
+  .error{
+    font-size: 0.8rem;
+  }
+
+}
+
