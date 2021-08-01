@@ -10,9 +10,10 @@
 <div class="top-menu" fxLayout="column">
   <ng-container *ngFor="let menu of topMenu">
 
-    <div class="content" fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="16px grid"
-         (click)="navigate(menu.path)">
-      <mat-icon class="icon">{{menu.icon}}</mat-icon>
+    <div class="content" fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="16px grid">
+      <button mat-button class="button" (click)="navigate(menu.path)">
+        <mat-icon class="icon">{{menu.icon}}</mat-icon>
+      </button>
       <div class="text">
         <h4><b>{{ menu.title }}</b></h4>
         <p class="mat-small">{{ menu.description }}</p>

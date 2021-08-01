@@ -1,1 +1,36 @@
-<p>search works!</p>
+<div class="search-field">
+  <form class="form" (ngSubmit)="submitSearch()">
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Search</mat-label>
+      <input type="text" matInput [formControl]="inputControl" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </form>
+
+  <div class="toggle">
+    <mat-slide-toggle color="primary" [(ngModel)]="isAutocomplete">Autocomplete</mat-slide-toggle>
+  </div>
+</div>
+
+<table mat-table [dataSource]="wordList">
+
+  <ng-container matColumnDef="Lemma">
+    <th mat-header-cell *matHeaderCellDef> Word </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button (click)="clickWord(element?.Lemma)">{{element?.Lemma}}</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Japanese">
+    <th mat-header-cell *matHeaderCellDef> Japanese </th>
+    <td mat-cell *matCellDef="let element"> {{element?.Japanese}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

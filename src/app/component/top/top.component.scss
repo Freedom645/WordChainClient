@@ -22,10 +22,13 @@
     box-sizing: border-box;
     border-radius: 5px;
     .text { padding: 16px; }
-    .icon{
-      $size: 32px;
-      font-size: $size;
-      line-height: $size;
+    .button{
+      .icon{
+        $size: 32px;
+        font-size: $size;
+        width: $size;
+        height: $size;
+      }
     }
   }
 }

@@ -103,6 +103,6 @@ export class PrefixPageComponent implements OnInit, OnDestroy {
   }
 
   clickWord(word: string) {
-    console.log(word);
+    this.router.navigate(['../../word/' + word], { relativeTo: this.route });
   }
 }
