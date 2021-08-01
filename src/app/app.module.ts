@@ -9,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { ApiClientService } from './service/api-client.service';
 import { SiteFrameComponent } from './component/site-frame/site-frame.component';
@@ -17,7 +18,7 @@ import { SiteFooterComponent } from './component/site-frame/site-footer/site-foo
 
 import { TopComponent } from './component/top/top.component';
 import { ChainGameModule } from './chain-game/chain-game.module';
-import { MatIconModule } from '@angular/material/icon';
+import { WordDictionaryModule } from './word-dictionary/word-dictionary.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
 
     ChainGameModule,
+    WordDictionaryModule,
   ],
   providers: [
     ApiClientService

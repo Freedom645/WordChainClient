@@ -1,0 +1,31 @@
+<p>prefix-page works!</p>
+<div>prefix: {{prefix}}</div>
+<div>prefixNum: {{prefixNum}}</div>
+<div>size: {{size}}</div>
+<div>index: {{index}}</div>
+
+<mat-paginator [length]="prefixNum" [pageSize]="size" [pageIndex]="index" [pageSizeOptions]="[10,50,100]"
+               (page)="changePage($event.pageIndex, $event.pageSize)" aria-label="Select page"
+               [attr.disabled]="paginatorDisabled">
+</mat-paginator>
+
+<table mat-table [dataSource]="wordList">
+
+  <ng-container matColumnDef="Lemma">
+    <th mat-header-cell *matHeaderCellDef> Word </th>
+    <td mat-cell *matCellDef="let element"> {{element.Lemma}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Japanese">
+    <th mat-header-cell *matHeaderCellDef> Japanese </th>
+    <td mat-cell *matCellDef="let element"> {{element.Japanese}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [length]="prefixNum" [pageSize]="size" [pageIndex]="index" [pageSizeOptions]="[10,50,100]"
+               (page)="changePage($event.pageIndex, $event.pageSize)" aria-label="Select page"
+               [attr.disabled]="paginatorDisabled">
+</mat-paginator>
