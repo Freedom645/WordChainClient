@@ -1,5 +1,6 @@
 .search-field{
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   .form{
@@ -11,7 +12,6 @@
     }
   }
   .toggle{
-    padding: 16px;
     width: 140px;
   }
 }
