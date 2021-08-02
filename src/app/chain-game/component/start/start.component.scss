@@ -6,11 +6,11 @@
   flex-direction: row;
 
   .section-title{
-    width: 60px;
-    min-width: 60px;
+    width: 50px;
+    min-width: 50px;
     margin-right: 56px;
-    margin-left: 20px;
-    font-size: 1.2rem;
+    margin-left: 10px;
+    font-size: 1.1rem;
     font-weight: 500;
   }
 
@@ -21,14 +21,21 @@
 
     .input{
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      .input-value{
+      .input-value {
         padding: 10px;
-        flex-basis: 40%;
+        max-width: 95%;
+        // flex-basis: 35%;
+        // background-color: blue;
       }
-      .input-slider{
+      .input-slider {
         padding: 10px;
-        flex-basis: 60%;
+        min-width: 200px;
+        width: 50%;
+        max-width: 95%;
+        // flex-basis: 55%;
+        // background-color: red;
       }
     }
   }
@@ -39,7 +46,7 @@
   justify-content:center;
   .start-button{
     width: 100%;
-    font-size: 2rem;
+    font-size: 1.3rem;
   }
 }
 
