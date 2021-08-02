@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './component/search/search.component';
 import { WordComponent } from './component/word/word.component';
 import { WordDictionaryComponent } from './container/word-dictionary/word-dictionary.component';
+import { WordResolverService } from './service/word-resolver.service';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
     component: WordDictionaryComponent,
     children: [
       { path: 'search', component: SearchComponent },
-      { path: 'word/:word', component: WordComponent },
+      { path: 'word/:word', component: WordComponent, resolve: { word: WordResolverService } },
       { path: '**', redirectTo: 'search', pathMatch: 'full' },
     ]
   }

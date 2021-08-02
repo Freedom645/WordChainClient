@@ -40,15 +40,12 @@ export class WordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.word) {
-      this.navigateSearch();
-    }
-    this.api.getWord(this.word).subscribe(res => {
-      if (!res || !res.length || !res[0]) {
+    this.route.data.subscribe(res => {
+      if (!res || !res.word || !res.word[0]) {
         this.navigateSearch();
         return;
       }
-      this.jew = res[0];
+      this.jew = res.word[0];
     });
   }
 
